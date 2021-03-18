@@ -6,6 +6,21 @@ html
        script(type="text/javascript", src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js")
 
    body
+     div(id='map')
+     form(action = "/geo-search-results", method = "GET")
+        div
+           label(for = "longitude") Longitude:
+           input(name = "longitude" value = lon)
+        br
+        div
+           label(for = "latitude") Latitude:
+           input(name = "latitude" value = lat)
+        br
+        div
+           label(for = "radius") Radius:
+           input(name = "radius" value = rad)
+        br
+        button(type = "submit") Send
      h1 Résultats
      div
        each result in results

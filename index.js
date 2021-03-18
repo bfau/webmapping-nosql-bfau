@@ -42,13 +42,15 @@ app.get('/geo-search-results', function(req, res){
  var latitude = parseFloat(req.query.latitude);
  var longitude = parseFloat(req.query.longitude);
  var radius = parseFloat(req.query.radius);
-
- var filter = {};
+ var titre = req.query.titre;
+var textregex = ".*"+titre+".*";
+ var filter = {"properties.ins_nom" : {$regex : textregex, $options : "i"}};
  if (Math.abs(longitude) > 0.00001 &&
      Math.abs(latitude) > 0.00001) {
 
    filter.geometry = { "$geoWithin": { "$center": [ [ longitude, latitude ] , radius ] } };
- }
+   }
+
  // console.log("filter", filter, [ longitude, latitude ]);
 
  mydb.collection('equip').find(filter).toArray(function(err, docs) {
@@ -58,7 +60,8 @@ app.get('/geo-search-results', function(req, res){
      results: docs,
      lat: latitude,
      lon: longitude,
-     rad:radius
+     rad: radius,
+     titre: titre,
 
    });
  });

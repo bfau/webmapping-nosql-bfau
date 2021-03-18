@@ -1,5 +1,5 @@
 #map {
-   height: 400px;
+   height: 100%;
    width: 50%;
    right: 0px;
    position:absolute;
@@ -7,9 +7,11 @@
 
 #result {
    overflow-y: auto;
+   width: 45%;
    height: 400px;
+   border-top: 1px solid black;
 }
 
 #form {
-  padding-top: 50px;
+  padding-top: 10px;
 }

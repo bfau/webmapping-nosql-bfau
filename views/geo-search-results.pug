@@ -7,20 +7,6 @@ html
 
    body
      div(id='map')
-
-     h1 Résultats
-     div(id='result')
-       each result in results
-         div
-           h2= result.properties.ins_nom
-           p
-             span Type :
-             span= result.properties.eqt_type
-           p
-             span Localisation :
-             span= result.geometry.coordinates.join(", ")
-
-
      form(id='form' action = "/geo-search-results", method = "GET")
         div
            label(for = "longitude") Longitude:
@@ -35,5 +21,22 @@ html
            input(name = "radius" value = rad)
         br
         button(type = "submit") Send
+     button(id = "getInfoMap") Get map position
+     <br>Map syncro:
+     input( type='checkbox'  id='myCheckbox' )
+     h1 Résultats
+     div(id='result')
+       each result in results
+         div
+           h2= result.properties.ins_nom
+           p
+             span Type :
+             span= result.properties.eqt_type
+           p
+             span Localisation :
+             span= result.geometry.coordinates.join(", ")
+
+
+
 
    script(type="text/javascript", src="static/map.js")
